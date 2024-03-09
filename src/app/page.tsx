@@ -147,9 +147,6 @@ export default function Home() {
           },
         }}
       />
-      <h1 className="font-grandstander mb-20 mt-12 text-4xl text-purple-600">
-        Token Bag
-      </h1>
       <section className="flex gap-2">
         <div className="flex flex-col items-center justify-center gap-2">
           <GoodToken /> <BadToken />

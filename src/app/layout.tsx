@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Grandstander, Inter } from 'next/font/google';
 
+import ThemeSwitcher from './component/ThemeSwitcher';
+import { Providers } from './providers';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -39,7 +42,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${grandstander.variable}`}>
-        {children}
+        <Providers>
+          <nav className="relative flex w-screen items-center justify-center p-4">
+            <h1 className="z-10 font-grandstander text-4xl text-purple-600">
+              Token Bag
+            </h1>
+            <ThemeSwitcher className="absolute right-2 p-2 transition-transform hover:scale-125" />
+          </nav>
+          {children}
+        </Providers>
       </body>
     </html>
   );

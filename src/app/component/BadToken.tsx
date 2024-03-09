@@ -1,3 +1,13 @@
+import Image from 'next/image';
+
 export default function BadToken() {
-  return <img alt="Bad Token" width={26} src="./bad.svg" />;
+  return (
+    <Image
+      className="dark:invert"
+      alt="Bad Token"
+      width={26}
+      height={26}
+      src="./bad.svg"
+    />
+  );
 }
