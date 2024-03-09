@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Grandstander, Inter } from 'next/font/google';
+import { Inter, Pixelify_Sans } from 'next/font/google';
 
 import ThemeSwitcher from './component/ThemeSwitcher';
 import { Providers } from './providers';
@@ -7,10 +7,10 @@ import { Providers } from './providers';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
-const grandstander = Grandstander({
+const pixelify = Pixelify_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-grandstander',
+  variable: '--font-pixelify',
 });
 
 export const metadata: Metadata = {
@@ -41,13 +41,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${grandstander.variable}`}>
+      <body className={`${inter.className} ${pixelify.variable}`}>
         <Providers>
-          <nav className="relative flex w-screen items-center justify-center p-4">
-            <h1 className="z-10 font-grandstander text-4xl text-purple-600">
-              Token Bag
+          <nav className="relative mb-12 flex w-screen items-center justify-center border-b-1 border-zinc-300 p-4 dark:border-zinc-800">
+            <h1 className="font-pixelify p-2 text-5xl text-zinc-800 dark:text-white">
+              TOKEN bag
             </h1>
-            <ThemeSwitcher className="absolute right-2 p-2 transition-transform hover:scale-125" />
+            <ThemeSwitcher className="absolute right-2 pr-4 transition-transform hover:scale-125" />
           </nav>
           {children}
         </Providers>

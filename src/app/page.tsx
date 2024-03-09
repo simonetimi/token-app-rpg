@@ -139,7 +139,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start gap-2">
+    <main className="flex flex-col items-center justify-start gap-2">
       <Toaster
         toastOptions={{
           style: {

@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        grandstander: ['var(--font-grandstander)'],
+        pixelify: ['var(--font-pixelify)'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
