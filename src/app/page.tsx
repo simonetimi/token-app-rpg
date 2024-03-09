@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { HandRaisedIcon } from '@heroicons/react/24/outline';
 import { MinusCircleIcon } from '@heroicons/react/24/outline';
-import { Button, Input } from '@nextui-org/react';
+import {
+  Button,
+  Input,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@nextui-org/react';
 
 import BadToken from './component/BadToken';
 import GoodToken from './component/GoodToken';
@@ -13,8 +19,10 @@ export default function Home() {
   const goodTokens = 15;
   const [drawAmount, setDrawAmount] = useState(1);
   const [badTokens, setBadTokens] = useState(1);
-  const [showInputs, setShowInputs] = useState(false);
   const [isTarotDrew, setIsTarotDrew] = useState(false);
+  const [showInputs, setShowInputs] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(true);
+  const [confirmDelete, setConfirmDelete] = useState(true);
 
   const handleOnClickDraw = () => {
     toast.dismiss();
@@ -69,6 +77,32 @@ export default function Home() {
       toast.error('Your token bag is already free of bad tokens.', {
         duration: 3000,
       });
+    }
+  };
+
+  const handleOnReset = () => {
+    toast.dismiss();
+    if (confirmReset) {
+      setConfirmReset(!confirmReset);
+      return;
+    } else {
+      setConfirmReset(!confirmReset);
+      setDrawAmount(1);
+      setBadTokens(1);
+      setIsTarotDrew(false);
+      toast.success('Data is reset!');
+    }
+  };
+
+  const handleOnDelete = () => {
+    toast.dismiss();
+    if (confirmDelete) {
+      setConfirmDelete(!confirmDelete);
+      return;
+    } else {
+      setConfirmDelete(!confirmDelete);
+      localStorage.clear();
+      toast.success('Data is delete from local storage!');
     }
   };
 
@@ -164,13 +198,41 @@ export default function Home() {
             />
           </div>
         ) : null}
-        <Button
-          onClick={handleOnSaveSession}
-          color="primary"
-          className="w-26 mt-12 h-9"
-        >
-          Save session
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            onClick={handleOnSaveSession}
+            color="primary"
+            className="w-26 mt-12 h-9"
+          >
+            Save session
+          </Button>
+          <Popover placement="top" color="warning">
+            <PopoverTrigger>
+              <Button
+                onClick={handleOnReset}
+                color="warning"
+                className="w-26 mt-12 h-9"
+              >
+                {confirmReset ? 'Reset' : 'Confirm Reset'}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>Are you sure you want to reset?</PopoverContent>
+          </Popover>
+          <Popover placement="top" color="danger">
+            <PopoverTrigger>
+              <Button
+                onClick={handleOnDelete}
+                color="danger"
+                className="w-26 mt-12 h-9"
+              >
+                {confirmDelete ? 'Delete' : 'Confirm Delete'}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              Are you sure you want to delete data?
+            </PopoverContent>
+          </Popover>
+        </div>
       </section>
     </main>
   );

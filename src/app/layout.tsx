@@ -11,8 +11,8 @@ const grandstander = Grandstander({
 });
 
 export const metadata: Metadata = {
-  title: 'Token Bag',
-  description: 'Token Bag App for RPG game',
+  title: 'Koriko Token Bag',
+  description: 'Token Bag App for Koriko RPG game',
   icons: [
     { rel: 'icon', url: '/favicon.ico', type: 'image/x-icon' },
     {
