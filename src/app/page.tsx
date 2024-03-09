@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { HandRaisedIcon } from '@heroicons/react/24/outline';
 import { MinusCircleIcon } from '@heroicons/react/24/outline';
@@ -72,6 +72,29 @@ export default function Home() {
     }
   };
 
+  const handleOnSaveSession = () => {
+    toast.dismiss();
+    const session = {
+      drawAmount,
+      badTokens,
+      isTarotDrew,
+    };
+    localStorage.setItem('session', JSON.stringify(session));
+    toast.success('Session saved locally!');
+  };
+
+  useEffect(() => {
+    toast.dismiss();
+    const storedSession = localStorage.getItem('session');
+    if (storedSession !== null) {
+      const session = JSON.parse(storedSession);
+      setDrawAmount(session.drawAmount);
+      setBadTokens(session.badTokens);
+      setIsTarotDrew(session.isTarotDrew);
+      toast.success('Session retrieved from local storage!');
+    }
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-start gap-2">
       <Toaster
@@ -122,10 +145,11 @@ export default function Home() {
         <Button
           onClick={onShowCustom}
           color="default"
-          className="w-26 mt-12 h-9"
+          className="w-26 mt-6 h-9"
         >
           Insert custom values
         </Button>
+
         {showInputs ? (
           <div className="mt-4 flex flex-col items-center justify-center gap-4">
             <Input
@@ -140,6 +164,13 @@ export default function Home() {
             />
           </div>
         ) : null}
+        <Button
+          onClick={handleOnSaveSession}
+          color="primary"
+          className="w-26 mt-12 h-9"
+        >
+          Save session
+        </Button>
       </section>
     </main>
   );
