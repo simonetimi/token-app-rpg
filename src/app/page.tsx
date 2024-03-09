@@ -10,6 +10,8 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Radio,
+  RadioGroup,
 } from '@nextui-org/react';
 
 import BadToken from './component/BadToken';
@@ -48,7 +50,14 @@ export default function Home() {
     }
 
     // show success and add bad token if it's 5 or less
-    toast('Yes! You drew a good token!', { icon: '👌', duration: 3000 });
+    if (drawAmount === 1) {
+      toast('Yes! You drew a good token!', { icon: '👌', duration: 3000 });
+    } else {
+      toast(`Yes! You drew ${drawAmount} good tokens!`, {
+        icon: '👌',
+        duration: 3000,
+      });
+    }
     if (badTokens < 6) {
       setBadTokens(badTokens + 1);
     }
@@ -159,16 +168,17 @@ export default function Home() {
           >
             <HandRaisedIcon className="w-1/3" /> Draw!
           </Button>
-          <Input
-            type="number"
-            className="w-10"
-            variant="underlined"
-            min="1"
-            max="3"
-            onChange={handleOnChangeDrawAmount}
-            value={drawAmount.toString()}
-          />
         </div>
+        <RadioGroup
+          className="mb-4"
+          orientation="horizontal"
+          value={drawAmount.toString()}
+          onChange={handleOnChangeDrawAmount}
+        >
+          <Radio value="1">1</Radio>
+          <Radio value="2">2</Radio>
+          <Radio value="3">3</Radio>
+        </RadioGroup>
         <Button
           color="secondary"
           className="h-9 text-white"
