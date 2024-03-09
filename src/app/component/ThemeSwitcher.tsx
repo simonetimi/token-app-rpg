@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 
 export default function ThemeSwitcher({ className }: { className: string }) {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -14,9 +14,11 @@ export default function ThemeSwitcher({ className }: { className: string }) {
 
   if (!mounted) return null;
 
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
   return (
     <div className={className}>
-      {theme === 'dark' ? (
+      {currentTheme === 'dark' ? (
         <button onClick={() => setTheme('light')}>
           <Image
             className="dark:invert"
