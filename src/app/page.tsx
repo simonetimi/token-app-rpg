@@ -99,7 +99,7 @@ export default function Home() {
       setDrawAmount(1);
       setBadTokens(1);
       setIsTarotDrew(false);
-      toast.success('Data is reset!');
+      toast.success('Your session has been reset!');
     }
   };
 
@@ -111,7 +111,7 @@ export default function Home() {
     } else {
       setConfirmDelete(!confirmDelete);
       localStorage.clear();
-      toast.success('Data is delete from local storage!');
+      toast.success('Data has been deleted from local storage!');
     }
   };
 
