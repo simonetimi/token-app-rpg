@@ -40,16 +40,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <body className={`${inter.className} ${pixelify.variable}`}>
         <Providers>
-          <nav className="relative mb-12 flex w-screen items-center justify-center border-b-1 border-zinc-300 p-4 dark:border-zinc-800">
-            <h1 className="font-pixelify p-2 text-5xl text-zinc-800 dark:text-white">
-              TOKEN bag
-            </h1>
-            <ThemeSwitcher className="absolute right-2 pr-4 transition-transform hover:scale-125" />
-          </nav>
-          {children}
+          <main className="h-screen bg-gradient-to-b from-gray-300 to-white dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900">
+            <nav className="relative mb-12 flex w-screen items-center justify-center border-b-1 border-zinc-300 p-4 dark:border-gray-700">
+              <h1 className="font-pixelify p-2 text-5xl text-zinc-800 dark:text-white">
+                TOKEN bag
+              </h1>
+              <ThemeSwitcher className="absolute right-2 pr-4 transition-transform hover:scale-125" />
+            </nav>
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
