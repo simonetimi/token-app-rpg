@@ -1,4 +1,4 @@
-Token Bag App for Toriko RPG game
+Token Bag App for Koriko RPG game
 
 Deployed at: [token-app-rpg.vercel.app](https://token-app-rpg.vercel.app/)
 
